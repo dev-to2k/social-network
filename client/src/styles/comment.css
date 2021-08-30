@@ -1,0 +1,57 @@
+.comment_input textarea {
+  background: rgb(242, 242, 242);
+  border: none;
+  width: 100%;
+  border-radius: 5px;
+  padding: 5px 10px;
+  resize: none;
+  outline: none;
+}
+
+.comment_content .top {
+  background-color: #f2f2f2;
+  border-radius: 15px;
+}
+
+.comment_content .top > a:hover {
+  text-decoration: underline;
+}
+
+.comment_content .like:hover,
+.comment_content .reply:hover {
+  text-decoration: underline;
+}
+
+.comment_content .top {
+  position: relative;
+}
+
+.comment_content .top .react {
+  position: absolute;
+  bottom: 5px;
+  right: -33px;
+}
+
+.menu .dropdown-menu {
+  left: inherit !important;
+  right: 0 !important;
+}
+
+.menu .dropdown-menu.show {
+  transform: translate(0px, 22px) !important;
+}
+
+.comment_content .top textarea {
+  border: none;
+  outline: none;
+  background-color: #f2f2f2;
+  width: 100%;
+}
+
+.comment_card .comment_content > .d-flex .menu {
+  opacity: 0;
+}
+
+.comment_card .comment_content > .d-flex:hover .menu {
+  opacity: 1;
+}

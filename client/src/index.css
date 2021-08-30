@@ -1,0 +1,287 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  font-size: calc(14px + (15 - 14) * ((100vw - 300px) / (1600 - 300)));
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+button {
+  border: none;
+  background: transparent;
+}
+
+.text-wrap {
+  overflow-wrap: normal;
+  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+
+.img-cover {
+  object-fit: cover;
+}
+
+.width-682 {
+  max-width: 682px;
+}
+
+.mt-2rem {
+  margin-top: 2rem !important;
+}
+
+.circle-sm {
+  height: 24px;
+  width: 24px;
+}
+
+.fw-500 {
+  font-weight: 500 !important;
+}
+
+.fw-600 {
+  font-weight: 600 !important;
+}
+
+.rounded-10 {
+  border-radius: 10px !important;
+}
+
+.fs-24 {
+  font-size: 24px !important;
+}
+
+.fs-14 {
+  font-size: 14px !important;
+}
+
+.hover-underline:hover {
+  text-decoration: underline;
+}
+
+.rounded-15 {
+  border-radius: 15px !important;
+}
+
+.mw-878 {
+  max-width: 878px !important;
+}
+
+.fs-12 {
+  font-size: 12px !important;
+}
+
+.fs-20 {
+  font-size: 20px !important;
+}
+
+.width-905 {
+  width: 905px !important;
+}
+
+.circle-big {
+  height: 100px;
+  width: 100px;
+}
+
+/* =============== AUTH =============== */
+@import "./styles/auth.css";
+
+/* =============== LOADING =============== */
+@import "./styles/loading.css";
+
+/* =============== HEADER =============== */
+@import "./styles/header.css";
+
+/* =============== PROFILE =============== */
+@import "./styles/profile.css";
+
+/* =============== HOME =============== */
+@import "./styles/home.css";
+
+/* =============== STATUS =============== */
+@import "./styles/status.css";
+
+/* =============== POSTS =============== */
+@import "./styles/post.css";
+
+/* =============== COMMENTS =============== */
+@import "./styles/comment.css";
+
+/* =============== DISCOVER =============== */
+@import "./styles/discover.css";
+
+/* =============== LEFT =============== */
+@import "./styles/left.css";
+
+/* =============== RIGHT =============== */
+@import "./styles/right.css";
+
+/* =============== MESSAGE =============== */
+@import "./styles/message.css";
+
+/* =============== ICONS =============== */
+@import "./styles/icons.css";
+
+/* =============== CALL MODAL =============== */
+@import "./styles/call_modal.css";
+
+/* <========================= RESPONSIVE ==========================> */
+
+/* =============== EXTRA SMALL =============== */
+@media screen and (max-width: 576px) {
+  .header {
+    padding-bottom: 1rem !important;
+  }
+
+  .header .row .left {
+    text-align: center;
+  }
+
+  .header .row .center {
+    margin: 1rem 0;
+  }
+
+  .header .row .right ul {
+    justify-content: space-around !important;
+  }
+
+  .header .row .right ul.show {
+    width: 340px;
+    transform: translate(33%, 45px) !important;
+  }
+
+  .notify-modal .body {
+    height: 100% !important;
+  }
+
+  .header .row .right ul .user-username {
+    margin: 0 0.5rem !important;
+  }
+
+  .message {
+    margin: 0px;
+  }
+
+  .message .left_mess {
+    padding-right: 0px;
+  }
+
+  .message .right_mess,
+  .mess_detail .left {
+    display: none;
+  }
+
+  .info__content__title .profile-follow {
+    justify-content: center !important;
+  }
+
+  .info__content__title .setting-profile {
+    padding: 0 !important;
+  }
+
+  .info__content__title .setting-profile button {
+    font-size: 10px !important;
+  }
+
+  .follow_block {
+    max-width: 100%;
+    width: 340px !important;
+    margin-top: 3rem;
+  }
+
+  .discover .width-905 {
+    width: 100% !important;
+  }
+
+  .wrap-form {
+    height: 100% !important;
+    padding: 1rem;
+  }
+
+  .wrap-form > div {
+    width: 100% !important;
+  }
+
+  .edit_profile form {
+    margin: 170px auto !important;
+  }
+
+  .edit_profile form,
+  .edit_profile .info_avatar {
+    height: 450px !important;
+    overflow: auto !important;
+  }
+}
+
+/* =============== SMALL =============== */
+@media screen and (min-width: 576px) {
+  .header {
+    padding-bottom: 1rem !important;
+  }
+
+  .header .row .left {
+    text-align: center;
+  }
+
+  .header .row .center {
+    margin: 1rem 0;
+  }
+
+  .header .row .right ul {
+    justify-content: space-around !important;
+  }
+
+  .header .row .right ul .user-username {
+    margin: 0 0.5rem !important;
+  }
+
+  .notify-modal {
+    width: 400px !important;
+  }
+
+  .notify-modal .body {
+    height: 400px !important;
+  }
+
+  .discover .width-905 {
+    width: 100% !important;
+  }
+}
+
+/* =============== MEDIUM =============== */
+@media screen and (min-width: 768px) {
+  .header {
+    padding-bottom: 0 !important;
+  }
+
+  .header .row .right ul .user-username {
+    margin: 0 0.5rem !important;
+  }
+}
+
+/* =============== LARGE =============== */
+@media screen and (min-width: 992px) {
+  .header .row .left {
+    text-align: left;
+  }
+
+  .header .row .right ul {
+    justify-content: flex-end !important;
+  }
+
+  .discover .width-905 {
+    width: 905px !important;
+  }
+}

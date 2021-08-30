@@ -1,0 +1,16 @@
+.suggestions {
+  margin: 0 -1rem;
+}
+
+.right-side-bar .user-top {
+  margin: -1rem -1rem 0 -1rem;
+}
+
+.right-side-bar .suggestions .user {
+  flex-wrap: wrap;
+}
+
+.right-side-bar .suggestions .user a,
+.right-side-bar .suggestions .user button {
+  min-width: fit-content;
+}

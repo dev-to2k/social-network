@@ -1,0 +1,9 @@
+.post_thumb .post_thumb_display .post_thumb_post {
+  padding: 2rem 1rem 1rem 1rem;
+}
+
+.post_thumb {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 1rem;
+}

@@ -1,0 +1,122 @@
+.btn-hover:hover {
+  background-color: #f2f2f2;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.status .live,
+.status .activity-emoji,
+.status .picture-video {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  border-radius: 0.3rem;
+  font-weight: 600;
+  color: #606266;
+}
+
+.status .live:hover,
+.status .activity-emoji:hover,
+.status .picture-video:hover {
+  background-color: #f2f2f2;
+}
+
+.status .row .left,
+.status .row .center,
+.status .row .right {
+  min-width: fit-content;
+}
+
+/*================== STATUS MODAL ===============*/
+.status_modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(244, 244, 244, 0.8);
+  z-index: 1;
+}
+
+.status_modal .status_wrap {
+  position: absolute;
+  width: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.status_wrap .header {
+  height: 36px;
+}
+
+.status_wrap .header button {
+  top: 0;
+  right: 0;
+}
+
+.status_wrap .footer input[type="file"] {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  display: none;
+}
+
+.status_wrap .body .show_images {
+  max-height: 250px;
+  max-width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  place-items: center;
+  grid-gap: 5px;
+}
+
+.status_wrap .body .show_images #file_img {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.status_wrap .body .show_images #file_img img,
+.status_wrap .body .show_images #file_img video {
+  display: block;
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.status_wrap .body .show_images #file_img span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 4;
+  background-color: #f2f2f2;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 17px;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.stream > button {
+  position: absolute;
+  top: 20px;
+  right: 5px;
+}
+
+.status_modal .status_wrap textarea {
+  border: none;
+  width: 100%;
+  resize: none;
+  outline: none;
+}
