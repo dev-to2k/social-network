@@ -9,10 +9,6 @@ function RightSideBar() {
   const { auth, suggestions } = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  //   useEffect(() => {
-  //     dispatch(getSuggestions(auth.token));
-  //   }, []);
-
   return (
     <div className="rounded-10 shadow-sm p-3 border right-side-bar bg-white">
       <div className="user-top">

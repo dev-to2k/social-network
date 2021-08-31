@@ -89,7 +89,7 @@ function CommentCard({ comment, post, commentId, children }) {
               <div className="mb-1 d-flex">
                 <div className="top p-3" style={onEdit ? widthFull : widthNormal}>
                   <Link to={`/profile/${comment.user._id}`} className="text-dark hover-underline">
-                    <h6>{comment.user.fullname}</h6>
+                    <h6>{comment.user.username}</h6>
                   </Link>
                   <div className="flex-fill text-wrap">
                     {onEdit ? (
@@ -98,7 +98,7 @@ function CommentCard({ comment, post, commentId, children }) {
                       <>
                         {comment.tag && comment.tag._id !== comment.user._id && (
                           <Link to={`profile/${comment.tag._id}`} className="me-1">
-                            @{comment.tag.fullname}
+                            @{comment.tag.username}
                           </Link>
                         )}
                         <span>

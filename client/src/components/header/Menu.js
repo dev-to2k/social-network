@@ -63,7 +63,7 @@ export default function Menu() {
       <li className="nav-item user-username">
         <Link to={`/profile/${auth.user._id}`} className="d-flex align-items-center">
           <img src={auth.user.avatar} className="rounded-circle circle img-cover" alt="avatar" />
-          <span className="text-white d-none d-xxl-block ms-2">{auth.user.fullname}</span>
+          <span className="text-white d-none d-xxl-block ms-2">{auth.user.username}</span>
         </Link>
       </li>
       <li className="nav-item dropdown">

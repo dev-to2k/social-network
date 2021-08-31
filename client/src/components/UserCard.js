@@ -41,7 +41,7 @@ export default function UserCard(props) {
       <Link to={`/profile/${user._id}`} onClick={handleCloseAll} className="text-dark fw-600 d-flex">
         <img src={user.avatar} className="me-1 img-cover rounded-circle circle" alt="avatar" />
         <div className="d-flex flex-column">
-          <span>{user.fullname}</span>
+          <span>{user.username}</span>
           <small>{msg ? showMsg(user) : ''}</small>
         </div>
       </Link>

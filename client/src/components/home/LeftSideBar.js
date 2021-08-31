@@ -10,7 +10,7 @@ function LeftSideBar() {
         <li>
           <Link to={`/profile/${auth.user._id}`}>
             <img src={auth.user.avatar} className="me-2 img-cover rounded-circle circle" alt="avatar" />
-            <span className="fw-600">{auth.user.fullname}</span>
+            <span className="fw-600">{auth.user.username}</span>
           </Link>
         </li>
         <li>

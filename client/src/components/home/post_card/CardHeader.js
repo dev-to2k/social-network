@@ -45,7 +45,7 @@ function CardHeader({ post }) {
         <div className="card_name">
           <h6 className="m-0">
             <Link to={`/profile/${post.user._id}`} className="text-dark">
-              {post.user.fullname}
+              {post.user.username}
             </Link>
           </h6>
           <Link to={`/post/${post._id}`}>

@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import CommentDisplay from './comments/CommentDisplay';
 
@@ -23,12 +23,12 @@ function Comments({ post }) {
     <div className="comments">
       {comments.length - next > 0 ? (
         <button type="button" className="text-secondary hover-underline mb-3" onClick={() => setNext(next + 10)}>
-          <span className="fw-600">Xem them binh luan...</span>
+          <span className="fw-600">Xem thêm bình luận...</span>
         </button>
       ) : (
         comments.length > 2 && (
           <button type="button" className="text-secondary hover-underline mb-3" onClick={() => setNext(2)}>
-            <span className="fw-600">An binh luan</span>
+            <span className="fw-600">Ẩn bình luận</span>
           </button>
         )
       )}
@@ -45,16 +45,3 @@ function Comments({ post }) {
 }
 
 export default Comments;
-
-Comments.propTypes = {
-  post: PropTypes.shape({
-    comments: PropTypes.arrayOf(PropTypes.object).isRequired,
-    // content: PropTypes.string.isRequired,
-    // createdAt: PropTypes.string.isRequired,
-    // images: PropTypes.array.isRequired,
-    // likes: PropTypes.array.isRequired,
-    // updatedAt: PropTypes.string.isRequired,
-    // user: PropTypes.object.isRequired,
-    // _id: PropTypes.string.isRequired,
-  }).isRequired,
-};

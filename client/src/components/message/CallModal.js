@@ -23,8 +23,6 @@ function CallModal() {
   const [tracks, setTracks] = useState(null);
   const [newCall, setNewCall] = useState(null);
 
-  console.log(tracks, newCall);
-
   const youVideo = useRef();
   const otherVideo = useRef();
 

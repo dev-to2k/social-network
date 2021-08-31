@@ -21,7 +21,7 @@ export default function Search() {
 
     try {
       setLoad(true);
-      const res = await getDataApi(`search?fullname=${search}`, auth.token);
+      const res = await getDataApi(`search?username=${search}`, auth.token);
       setUsers(res.data.users);
       setLoad(false);
     } catch (err) {
