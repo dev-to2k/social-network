@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable comma-dangle */
-import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import CommentCard from './CommentCard';
 
@@ -38,9 +38,3 @@ function CommentDisplay({ comment, post, replyCmt }) {
 }
 
 export default CommentDisplay;
-
-CommentDisplay.propTypes = {
-  comment: PropTypes.objectOf(PropTypes.any).isRequired,
-  post: PropTypes.objectOf(PropTypes.any).isRequired,
-  replyCmt: PropTypes.arrayOf(PropTypes.object).isRequired,
-};

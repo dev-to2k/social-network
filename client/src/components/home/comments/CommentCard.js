@@ -2,7 +2,6 @@
 import LikeComment from 'components/LikeComment';
 import Reacts from 'components/Reacts';
 import moment from 'moment';
-import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -76,6 +75,8 @@ function CommentCard({ comment, post, commentId, children }) {
   const widthNormal = {
     width: 'auto',
   };
+
+  console.log(comment);
 
   return (
     <>
@@ -167,16 +168,6 @@ function CommentCard({ comment, post, commentId, children }) {
 
 export default CommentCard;
 
-CommentCard.propTypes = {
-  comment: PropTypes.shape({
-    likes: PropTypes.arrayOf(PropTypes.object).isRequired,
-    content: PropTypes.string.isRequired,
-    _id: PropTypes.string.isRequired,
-    user: PropTypes.objectOf(PropTypes.any),
-    tag: PropTypes.objectOf(PropTypes.any),
-    createdAt: PropTypes.string.isRequired,
-  }).isRequired,
-
-  post: PropTypes.objectOf(PropTypes.any).isRequired,
-  commentId: PropTypes.string.isRequired,
-};
+// CommentCard.propTypes = {
+//   comment: PropTypes,
+// };
