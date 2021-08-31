@@ -167,7 +167,3 @@ function CommentCard({ comment, post, commentId, children }) {
 }
 
 export default CommentCard;
-
-// CommentCard.propTypes = {
-//   comment: PropTypes,
-// };
