@@ -58,7 +58,7 @@ export const createPost = (props) => async (dispatch) => {
     dispatch({
       type: GLOBALTYPES.ALERT,
       payload: {
-        error: error.respone.data.msg,
+        error: error.response.data.msg,
       },
     });
   }
@@ -86,7 +86,7 @@ export const getPosts = (token) => async (dispatch) => {
     dispatch({
       type: GLOBALTYPES.ALERT,
       payload: {
-        error: error.respone.data.msg,
+        error: error.response.data.msg,
       },
     });
   }
@@ -114,7 +114,7 @@ export const updatePost = (props) => async (dispatch) => {
     dispatch({
       type: GLOBALTYPES.ALERT,
       payload: {
-        error: error.respone.data.msg,
+        error: error.response.data.msg,
       },
     });
   }

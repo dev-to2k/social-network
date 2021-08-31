@@ -1,9 +1,10 @@
-import GridImage from 'components/GridImage';
+import CarouselImage from 'components/CarouselImage';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
 function CardBody({ post }) {
   const [readMore, setReadMore] = useState(false);
+
   return (
     <div className="card_body mb-3">
       <div className="card_body-content mb-3">
@@ -18,7 +19,7 @@ function CardBody({ post }) {
           </button>
         )}
       </div>
-      {post.images.length > 0 && <GridImage images={post.images} />}
+      {post.images.length > 0 && <CarouselImage images={post.images} id={post._id} />}
     </div>
   );
 }

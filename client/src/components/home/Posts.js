@@ -32,6 +32,7 @@ function Posts() {
       handleLoadMore();
     }, 1000);
   }
+
   return (
     <div className="posts my-3">
       {homePosts.posts.map((post) => (

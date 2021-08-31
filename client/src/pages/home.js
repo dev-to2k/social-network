@@ -11,7 +11,7 @@ export default function Home() {
   const { homePosts } = useSelector((state) => state);
 
   return (
-    <div className="container-fluid home pt-4">
+    <div className="container-fluid h-auto pt-4">
       <div className="row">
         <div className="col-xl-3 d-none d-xl-block">
           <LeftSideBar />

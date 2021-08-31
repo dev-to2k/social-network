@@ -73,7 +73,7 @@ export const register = (data) => async (dispatch) => {
     try {
       dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } });
       const res = await postDataApi('register', data);
-      console.log(res);
+
       dispatch({
         type: GLOBALTYPES.AUTH,
         payload: {
