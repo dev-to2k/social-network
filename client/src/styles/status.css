@@ -58,7 +58,7 @@
   right: 0;
 }
 
-.status_wrap .footer input[type="file"] {
+.status_wrap .footer input[type='file'] {
   position: absolute;
   width: 36px;
   height: 36px;
