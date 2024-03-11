@@ -1,7 +1,5 @@
 /* eslint-disable no-use-before-define */
 import useInfiniteScroll from 'hooks/useInfiniteScroll';
-import LoadIcon from 'images/loading.gif';
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { POST_TYPES } from 'redux/actions/postAction';
 import { getDataApi } from 'utils/fetchData';
@@ -39,7 +37,7 @@ function Posts() {
         <PostCard key={post._id} post={post} />
       ))}
 
-      {load && <img src={LoadIcon} alt="loading" />}
+      {load && <div className="loader" />}
     </div>
   );
 }

@@ -1,6 +1,5 @@
 /* eslint-disable operator-linebreak */
-import LoadIcon from 'images/loading.gif';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { GLOBALTYPES } from 'redux/actions/globalTypes';
@@ -21,7 +20,7 @@ export default function Search() {
 
     try {
       setLoad(true);
-      const res = await getDataApi(`search?username=${search}`, auth.token);
+      const res = await getDataApi(`search?fullname=${search}`, auth.token);
       setUsers(res.data.users);
       setLoad(false);
     } catch (err) {
@@ -55,7 +54,7 @@ export default function Search() {
           </button>
         </div>
 
-        {load && <img src={LoadIcon} alt="avatar" className="load" />}
+        {load && <div className="loader" />}
 
         <div className="users shadow rounded">
           {search &&

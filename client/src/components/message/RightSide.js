@@ -6,8 +6,7 @@
 /* eslint-disable no-useless-return */
 /* eslint-disable react/no-array-index-key */
 import Icons from 'components/Icons';
-import LoadIcon from 'images/loading.gif';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { GLOBALTYPES } from 'redux/actions/globalTypes';
@@ -238,7 +237,7 @@ const RightSide = () => {
 
           {loadMedia && (
             <div className="chat_row you_message">
-              <img src={LoadIcon} alt="loading" />
+              <div className="loader" />
             </div>
           )}
         </div>

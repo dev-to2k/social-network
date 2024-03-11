@@ -2,7 +2,7 @@
 import LikeComment from 'components/LikeComment';
 import Reacts from 'components/Reacts';
 import moment from 'moment';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import TextareaAutosize from 'react-textarea-autosize';
@@ -75,8 +75,6 @@ function CommentCard({ comment, post, commentId, children }) {
   const widthNormal = {
     width: 'auto',
   };
-
-  console.log(comment);
 
   return (
     <>

@@ -1,6 +1,5 @@
 import PostCard from 'components/PostCard';
-import LoadIcon from 'images/loading.gif';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getPostDetails } from 'redux/actions/postAction';
@@ -22,7 +21,7 @@ function PostDetails() {
 
   return (
     <div className="post-details width-682 mx-auto mt-4 mb-5">
-      {post.length === 0 && <img src={LoadIcon} alt="loading" />}
+      {post.length === 0 && <div className="loader" />}
       {post.map((item) => (
         <PostCard key={item._id} post={item} />
       ))}

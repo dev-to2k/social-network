@@ -1,9 +1,12 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { MESS_TYPES } from 'redux/actions/messageAction';
 import { follow, unFollow } from 'redux/actions/profileAction';
 
 export default function FollowButton({ user }) {
+  const history = useHistory();
   const [followed, setFollowed] = useState(false);
   const [load, setLoad] = useState(false);
 
@@ -33,15 +36,25 @@ export default function FollowButton({ user }) {
     setLoad(false);
   };
 
+  const onDirectToMessage = () => {
+    dispatch({ type: MESS_TYPES.ADD_USER, payload: { ...user, text: '', media: [] } });
+    return history.push(`/message/${user._id}`);
+  };
+
   return (
     <>
       {followed ? (
-        <button className="btn btn-outline-primary btn-sm fw-600" type="button" onClick={handleUnFollow}>
-          <p className="mb-0 d-flex align-items-end">
-            <span className="material-icons-outlined me-1">done</span>
-            Bỏ theo dõi
-          </p>
-        </button>
+        <div className="d-flex align-items-center" style={{ columnGap: '1rem' }}>
+          <button type="button" className="btn btn-primary" onClick={onDirectToMessage}>
+            Message
+          </button>
+          <button className="btn btn-outline-primary btn-sm fw-600" type="button" onClick={handleUnFollow}>
+            <p className="mb-0 d-flex align-items-end">
+              <span className="material-icons-outlined me-1">done</span>
+              Bỏ theo dõi
+            </p>
+          </button>
+        </div>
       ) : (
         <button className="btn btn-primary btn-sm" type="button" onClick={handleFollow}>
           <p className="mb-0 d-flex align-items-end">

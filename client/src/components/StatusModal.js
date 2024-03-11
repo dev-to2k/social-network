@@ -1,13 +1,33 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextareaAutosize from 'react-textarea-autosize';
 import { imageShow, videoShow } from 'utils/mediaShow';
 import { GLOBALTYPES } from '../redux/actions/globalTypes';
 import { createPost, updatePost } from '../redux/actions/postAction';
+
 import Icons from './Icons';
 
+const Map = ({ position, setCurrentLocation }) => (
+  <div className="map bg-light rounded p-3 position-relative">
+    <button type="button" className="btn p-0 position-absolute end-0 top-0" onClick={() => setCurrentLocation(null)}>
+      <span className="material-icons-outlined text-danger pointer">close</span>
+    </button>
+    <h6>Vị trí của bạn</h6>
+    <p className="mb-0">Quốc gia: {position.countryName}</p>
+    <p className="mb-0">Tỉnh: {position.principalSubdivision}</p>
+    <p className="mb-0">Thành phố: {position.city}</p>
+    <p className="mb-0">Địa phương: {position.locality}</p>
+    <p className="mb-0">Vĩ độ: {position.latitude}</p>
+    <p className="mb-0">Kinh độ: {position.longitude}</p>
+    <p className="mb-0">Lục địa: {position.continent}</p>
+    <p className="mb-0">Plus Code: {position.plusCode}</p>
+  </div>
+);
+
 function StatusModal() {
+  const [currentLocation, setCurrentLocation] = useState(null);
   const [images, setImages] = useState([]);
   const [stream, setStream] = useState(false);
   const [tracks, setTracks] = useState('');
@@ -103,6 +123,44 @@ function StatusModal() {
     }
   }, [status]);
 
+  const onGetPlace = () => {
+    if (!navigator.geolocation) {
+      dispatch({
+        type: GLOBALTYPES.ALERT,
+        payload: {
+          error: 'Định vị địa lý không được trình duyệt của bạn hỗ trợ',
+        },
+      });
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        try {
+          const { latitude, longitude } = position.coords;
+          const response = await axios.get('https://api.bigdatacloud.net/data/reverse-geocode-client', {
+            params: {
+              latitude,
+              longitude,
+              localityLanguage: 'vn',
+            },
+          });
+          setCurrentLocation(response.data); // Xử lý dữ liệu tại đây
+        } catch (error) {
+          console.error(error);
+        }
+      },
+      (error) => {
+        dispatch({
+          type: GLOBALTYPES.ALERT,
+          payload: {
+            error: error.message,
+          },
+        });
+      }
+    );
+  };
+
   return (
     <div className="status_modal">
       <div className="status_wrap width-682 rounded-3 shadow bg-white p-3">
@@ -130,7 +188,7 @@ function StatusModal() {
                 placeholder="Bạn đang nghĩ gì?"
               />
             </div>
-
+            {currentLocation && <Map position={currentLocation} setCurrentLocation={setCurrentLocation} />}
             <div className="show_images my-3">
               {images.map((img, index) => (
                 <div key={index} id="file_img">
@@ -217,7 +275,15 @@ function StatusModal() {
                     <Icons setContent={setContent} content={content} />
                   </div>
                   <div className="p-2 d-flex ms-2 btn-hover rounded-circle circle justify-content-center align-items-center">
-                    <span className="material-icons-outlined text-danger pointer">place</span>
+                    <span
+                      className="material-icons-outlined text-danger pointer"
+                      role="button"
+                      tabIndex={0}
+                      onClick={onGetPlace}
+                      onKeyDown={onGetPlace}
+                    >
+                      place
+                    </span>
                   </div>
                   <div className="p-2 d-flex ms-2 btn-hover rounded-circle circle justify-content-center align-items-center">
                     <span className="material-icons-outlined pointer">more_horiz</span>

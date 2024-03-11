@@ -1,7 +1,6 @@
 /* eslint-disable no-alert */
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { GLOBALTYPES } from 'redux/actions/globalTypes';
@@ -38,9 +37,9 @@ function CardHeader({ post }) {
 
   return (
     <div className="card_header d-flex mb-3">
-      <div>
+      <Link to={`/profile/${post.user._id}`} className="text-dark">
         <img src={post.user.avatar} className="rounded-circle circle img-cover" alt="avatar" />
-      </div>
+      </Link>
       <div className="d-flex align-items-center justify-content-between w-100 ps-2">
         <div className="card_name">
           <h6 className="m-0">

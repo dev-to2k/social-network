@@ -2,8 +2,7 @@
 /* eslint-disable react/prop-types */
 import LoadMoreButton from 'components/LoadMoreButton';
 import PostThumb from 'components/PostThumb';
-import LoadIcon from 'images/loading.gif';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GLOBALTYPES } from 'redux/actions/globalTypes';
 import { getDataApi } from 'utils/fetchData';
 
@@ -44,7 +43,7 @@ function Saved({ auth, dispatch }) {
       </p>
       <PostThumb posts={savePosts} result={result} />
 
-      {load && <img src={LoadIcon} alt="loading" className="d-block mx-auto" />}
+      {load && <div className="loader d-block mx-auto" />}
 
       <LoadMoreButton result={result} page={page} load={load} handleLoadMore={handleLoadMore} />
     </div>

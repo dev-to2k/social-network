@@ -70,15 +70,6 @@ export const updateProfileUser = (props) => async (dispatch) => {
     });
   }
 
-  if (userData.story.length > 200) {
-    return dispatch({
-      type: GLOBALTYPES.ALERT,
-      payload: {
-        error: 'Story too long',
-      },
-    });
-  }
-
   const res = await patchDataApi(
     'user',
     {

@@ -2,8 +2,7 @@
 /* eslint-disable react/prop-types */
 import PostThumb from 'components/PostThumb';
 import useInfiniteScroll from 'hooks/useInfiniteScroll';
-import LoadIcon from 'images/loading.gif';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PROFILE_TYPES } from 'redux/actions/profileAction';
 import { getDataApi } from 'utils/fetchData';
 
@@ -41,7 +40,7 @@ export default function Posts(props) {
     <>
       <PostThumb posts={posts} />
 
-      {load && <img src={LoadIcon} alt="loading" />}
+      {load && <div className="loader" />}
     </>
   );
 }

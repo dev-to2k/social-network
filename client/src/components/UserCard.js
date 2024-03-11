@@ -2,7 +2,6 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/prop-types */
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function UserCard(props) {
@@ -41,7 +40,7 @@ export default function UserCard(props) {
       <Link to={`/profile/${user._id}`} onClick={handleCloseAll} className="text-dark fw-600 d-flex">
         <img src={user.avatar} className="me-1 img-cover rounded-circle circle" alt="avatar" />
         <div className="d-flex flex-column">
-          <span>{user.username}</span>
+          <span>{user.fullname}</span>
           <small>{msg ? showMsg(user) : ''}</small>
         </div>
       </Link>

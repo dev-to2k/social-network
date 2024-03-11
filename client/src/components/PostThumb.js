@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 function PostThumb({ posts, result }) {
@@ -28,7 +27,10 @@ function PostThumb({ posts, result }) {
 
           <div className="post_thumb_post">
             <div className="text-dark d-flex">
-              <img src={post.user.avatar} className="circle rounded-circle me-2" alt="avatar" />
+              <Link to={`/profile/${post.user._id}`}>
+                <img src={post.user.avatar} className="circle rounded-circle me-2" alt="avatar" />
+              </Link>
+
               <div>
                 <p className="fw-600 mb-0">{post.user.fullname}</p>
                 <Link to={`/post/${post._id}`}>
