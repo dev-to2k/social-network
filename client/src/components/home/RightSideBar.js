@@ -1,7 +1,5 @@
 import FollowButton from 'components/follow/FollowButton';
 import UserCard from 'components/UserCard';
-import LoadIcon from 'images/loading.gif';
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSuggestions } from 'redux/actions/suggestionsAction';
 
@@ -25,7 +23,7 @@ function RightSideBar() {
       </div>
 
       {suggestions.loading ? (
-        <img src={LoadIcon} alt="loading" className="d-block mx-auto my-4" />
+        <div className="loader d-block mx-auto my-4" />
       ) : (
         <div className="suggestions">
           {suggestions.users.map((user) => (

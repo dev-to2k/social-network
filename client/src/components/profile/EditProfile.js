@@ -1,6 +1,6 @@
 /* eslint-disable react/button-has-type */
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateProfileUser } from '../../redux/actions/profileAction';
 
@@ -8,14 +8,15 @@ export default function EditProfile({ user, setOnEdit }) {
   const initialState = {
     fullname: '',
     mobile: '',
-    address: '',
-    website: '',
-    story: '',
+    classStudy: '',
+    faculty: '',
+    major: '',
+    course: '',
     gender: '',
   };
 
   const [userData, setUserData] = useState(initialState);
-  const { fullname, mobile, address, website, story, gender } = userData;
+  const { fullname, mobile, classStudy, faculty, major, course, gender } = userData;
 
   const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -86,38 +87,50 @@ export default function EditProfile({ user, setOnEdit }) {
             </label>
           </div>
           <div className="form-group mb-3">
-            <label htmlFor="address">
-              Địa chỉ{' '}
+            <label htmlFor="classStudy">
+              Lớp{' '}
               <input
                 type="text"
                 className="form-control"
-                id="address"
-                name="address"
-                value={address}
+                id="classStudy"
+                name="classStudy"
+                value={classStudy}
                 onChange={handleChangeInput}
               />
             </label>
           </div>
           <div className="form-group mb-3">
-            <label htmlFor="website">
-              Website{' '}
+            <label htmlFor="faculty">
+              Khoa{' '}
               <input
                 type="text"
                 className="form-control"
-                id="website"
-                name="website"
-                value={website}
+                id="faculty"
+                name="faculty"
+                value={faculty}
                 onChange={handleChangeInput}
               />
             </label>
           </div>
           <div className="form-group mb-3">
-            <label htmlFor="story">
-              Câu chuyện{' '}
+            <label htmlFor="major">
+              Ngành{' '}
               <div className="position-relative">
-                <textarea className="form-control" id="story" name="story" value={story} onChange={handleChangeInput} />
-                <small className="text-danger d-block text-end">{story.length}/200</small>
+                <textarea className="form-control" id="major" name="major" value={major} onChange={handleChangeInput} />
               </div>
+            </label>
+          </div>
+          <div className="form-group mb-3">
+            <label htmlFor="course">
+              Khoá{' '}
+              <input
+                type="text"
+                className="form-control"
+                id="course"
+                name="course"
+                value={course}
+                onChange={handleChangeInput}
+              />
             </label>
           </div>
 

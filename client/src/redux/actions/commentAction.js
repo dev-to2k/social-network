@@ -60,8 +60,7 @@ export const updateComment = (props) => async (dispatch) => {
   });
 
   try {
-    const res = await patchDataApi(`comment/${comment._id}`, { content }, auth.token);
-    console.log(res);
+    await patchDataApi(`comment/${comment._id}`, { content }, auth.token);
   } catch (error) {
     dispatch({
       type: GLOBALTYPES.ALERT,

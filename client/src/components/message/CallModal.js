@@ -208,7 +208,7 @@ function CallModal() {
               <span>{second.toString().length < 2 ? `0${second}` : second}</span>
             </div>
           ) : (
-            <div>{call.video ? <span>đang gọi video...</span> : <span>đang gọi video...</span>}</div>
+            <div>{call.video ? <span>đang gọi video...</span> : <span>đang gọi...</span>}</div>
           )}
 
           {!answer && (

@@ -42,5 +42,8 @@ module.exports = {
         },
       },
     ],
+    'react/react-in-jsx-scope': 0,
+    'comma-dangle': 0,
+    'react/prop-types': 0,
   },
 };

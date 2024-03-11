@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 body {
@@ -95,47 +95,66 @@ button {
   width: 100px;
 }
 
+/* HTML: <div class="loader"></div> */
+.loader {
+  font-weight: bold;
+  font-family: sans-serif;
+  font-size: 30px;
+  animation: l1 1s linear infinite alternate;
+  text-align: center;
+}
+
+.loader:before {
+  content: 'Loading...';
+}
+
+@keyframes l1 {
+  to {
+    opacity: 0;
+  }
+}
+
 /* =============== AUTH =============== */
-@import "./styles/auth.css";
+@import './styles/auth.css';
 
 /* =============== LOADING =============== */
-@import "./styles/loading.css";
+@import './styles/loading.css';
 
 /* =============== HEADER =============== */
-@import "./styles/header.css";
+@import './styles/header.css';
 
 /* =============== PROFILE =============== */
-@import "./styles/profile.css";
+@import './styles/profile.css';
 
 /* =============== HOME =============== */
-@import "./styles/home.css";
+@import './styles/home.css';
 
 /* =============== STATUS =============== */
-@import "./styles/status.css";
+@import './styles/status.css';
 
 /* =============== POSTS =============== */
-@import "./styles/post.css";
+@import './styles/post.css';
 
 /* =============== COMMENTS =============== */
-@import "./styles/comment.css";
+@import './styles/comment.css';
 
 /* =============== DISCOVER =============== */
-@import "./styles/discover.css";
+@import './styles/discover.css';
 
 /* =============== LEFT =============== */
-@import "./styles/left.css";
+@import './styles/left.css';
 
 /* =============== RIGHT =============== */
-@import "./styles/right.css";
+@import './styles/right.css';
 
 /* =============== MESSAGE =============== */
-@import "./styles/message.css";
+@import './styles/message.css';
 
 /* =============== ICONS =============== */
-@import "./styles/icons.css";
+@import './styles/icons.css';
 
 /* =============== CALL MODAL =============== */
-@import "./styles/call_modal.css";
+@import './styles/call_modal.css';
 
 /* <========================= RESPONSIVE ==========================> */
 

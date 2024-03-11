@@ -1,8 +1,7 @@
 /* eslint-disable no-use-before-define */
 import PostThumb from 'components/PostThumb';
 import useInfiniteScroll from 'hooks/useInfiniteScroll';
-import LoadIcon from 'images/loading.gif';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { DISCOVER_TYPES, getDiscoverPosts } from 'redux/actions/discoverAction';
 import { getDataApi } from 'utils/fetchData';
@@ -41,11 +40,11 @@ export default function Discover() {
             <i className="far fa-list-alt fs-4" />
           </div>
           {discover.loading ? (
-            <img src={LoadIcon} alt="loading" />
+            <div className="loader" />
           ) : (
             <PostThumb posts={discover.posts} result={discover.result} />
           )}
-          {load && <img src={LoadIcon} alt="loading" />}
+          {load && <div className="loader" />}
         </div>
       </div>
     </div>

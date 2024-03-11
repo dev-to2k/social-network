@@ -1,6 +1,5 @@
-import LoadIcon from 'images/loading.gif';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import EditAvatar from '../EditAvatar';
 import FollowButton from '../follow/FollowButton';
 import Followers from '../follow/Followers';
@@ -53,8 +52,9 @@ export default function Info(props) {
                   )}
                 </div>
                 {formChangeAvatar && <EditAvatar user={user} setFormChangeAvatar={setFormChangeAvatar} />}
-                <div className="container-fluid mw-878">
+                <div className="container-fluid mw-878 mx-auto">
                   <h1>{user.fullname}</h1>
+                  <span>{user.username}</span>
                   <hr className="mb-0" />
                   <div className="row mx-auto fs-14 py-2">
                     <div className="col col-lg-6 col-md-6 col-sm-12 ps-0 d-none d-sm-block">
@@ -99,7 +99,7 @@ export default function Info(props) {
 
             <div className="info__content__body mw-878 container mt-4">
               {profile.loading ? (
-                <img className="d-block mx-auto" src={LoadIcon} alt="loading" />
+                <div className="loader d-block mx-auto" />
               ) : (
                 <>
                   {saveTab ? (
@@ -113,9 +113,34 @@ export default function Info(props) {
                             <span className="material-icons-outlined me-2 text-secondary">account_circle</span>
                             <span>{user.fullname}</span>
                           </div>
-                          <div className="d-flex mb-3">
-                            <span className="material-icons-outlined text-secondary me-2">public</span>
-                            <span>{user.address}</span>
+                          <div className="d-flex mb-3" style={{ columnGap: '1rem' }}>
+                            <span className="material-icons-outlined text-secondary">school</span>
+                            {user.classStudy && (
+                              <>
+                                <span>Lớp:</span> <b>{user.classStudy}</b>
+                              </>
+                            )}
+                            {user.faculty && (
+                              <>
+                                <span>
+                                  Khoa: <b>{user.faculty}</b>
+                                </span>
+                              </>
+                            )}
+                            {user.major && (
+                              <>
+                                <span>
+                                  Ngành: <b>{user.major}</b>
+                                </span>
+                              </>
+                            )}
+                            {user.course && (
+                              <>
+                                <span>
+                                  Khoá: <b>{user.course}</b>
+                                </span>
+                              </>
+                            )}
                           </div>
                           <div className="d-flex mb-3">
                             <span className="material-icons-outlined me-2 text-secondary">contact_mail</span>
@@ -153,15 +178,13 @@ export default function Info(props) {
                               người theo dõi
                             </span>
                           </div>
+
                           <div className="d-flex mb-3">
                             <a href={user.website} target="_blank" rel="noopener noreferrer" className="text-wrap">
                               {user.website}
                             </a>
                           </div>
-                          <div className="d-flex mb-3">
-                            <span className="material-icons-outlined me-2 text-secondary">auto_stories</span>
-                            {user.story}
-                          </div>
+
                           {user._id === auth.user._id ? (
                             <button type="button" className="btn btn-edit fw-600 w-100" onClick={() => setEdit(true)}>
                               Chỉnh sửa chi tiết
@@ -172,7 +195,7 @@ export default function Info(props) {
 
                           {edit && <EditProfile user={user} setOnEdit={setEdit} />}
                         </div>
-                        <p className="text-center mt-3">Thanh Trung - Admin</p>
+                        <hr />
                       </div>
                       <div className="w-100" />
                       <div className="col-lg-12 col-md-12">
