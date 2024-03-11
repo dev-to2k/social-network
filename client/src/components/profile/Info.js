@@ -52,7 +52,7 @@ export default function Info(props) {
                   )}
                 </div>
                 {formChangeAvatar && <EditAvatar user={user} setFormChangeAvatar={setFormChangeAvatar} />}
-                <div className="container-fluid mw-878">
+                <div className="container-fluid mw-878 mx-auto">
                   <h1>{user.fullname}</h1>
                   <span>{user.username}</span>
                   <hr className="mb-0" />
