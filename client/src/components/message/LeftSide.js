@@ -2,12 +2,12 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import UserCard from 'components/UserCard';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { BOT_TYPES } from 'redux/actions/botAction';
 import { GLOBALTYPES } from 'redux/actions/globalTypes';
-import { getConversations, MESS_TYPES } from 'redux/actions/messageAction';
+import { MESS_TYPES, getConversations } from 'redux/actions/messageAction';
 import { getDataApi } from 'utils/fetchData';
 
 function LeftSide(props) {
@@ -31,7 +31,7 @@ function LeftSide(props) {
     if (!search) return setSearchUsers([]);
 
     try {
-      const res = await getDataApi(`search?username=${search}`, auth.token);
+      const res = await getDataApi(`search?fullname=${search}`, auth.token);
       setSearchUsers(res.data.users);
     } catch (error) {
       dispatch({ type: GLOBALTYPES.ALERT, payload: { error: error.response.data.msg } });
@@ -97,6 +97,10 @@ function LeftSide(props) {
       dispatch({ type: MESS_TYPES.CHECK_ONLINE_OFFLINE, payload: online });
     }
   }, [online, message.firstLoad, dispatch]);
+
+  useEffect(() => {
+    if (!search) setSearchUsers([]);
+  }, [search]);
 
   return (
     <>
