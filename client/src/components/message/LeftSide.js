@@ -26,7 +26,7 @@ function LeftSide() {
     if (!search) return setSearchUsers([]);
 
     try {
-      const res = await getDataApi(`search?username=${search}`, auth.token);
+      const res = await getDataApi(`search?fullname=${search}`, auth.token);
       setSearchUsers(res.data.users);
     } catch (error) {
       dispatch({ type: GLOBALTYPES.ALERT, payload: { error: error.response.data.msg } });
