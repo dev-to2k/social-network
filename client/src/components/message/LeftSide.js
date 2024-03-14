@@ -1,20 +1,25 @@
 /* eslint-disable comma-dangle */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import UserCard from 'components/UserCard';
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory, useParams } from 'react-router-dom';
+import { BOT_TYPES } from 'redux/actions/botAction';
 import { GLOBALTYPES } from 'redux/actions/globalTypes';
 import { getConversations, MESS_TYPES } from 'redux/actions/messageAction';
 import { getDataApi } from 'utils/fetchData';
 
-function LeftSide() {
+function LeftSide(props) {
   const [search, setSearch] = useState('');
   const [searchUsers, setSearchUsers] = useState([]);
 
-  const { auth, message, online } = useSelector((state) => state);
+  const { auth, message, online, bot } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const { id } = useParams();
+  const { activeBot, wiseTkun, isBotChat } = bot;
+  const aiId = '65f197639b40fc18f05dc08e';
   const history = useHistory();
 
   const pageEnd = useRef();
@@ -46,10 +51,21 @@ function LeftSide() {
     if (id === user._id) return 'active';
     return '';
   };
+  const getAIBot = () => {
+    const isBot = message.users.find((user) => user._id === wiseTkun._id);
+    if (isBot) dispatch({ type: BOT_TYPES.SET_IS_BOT_CHAT, payload: { isBotChat: true, activeBot: isBot } });
+  };
 
   useEffect(() => {
-    if (message.firstLoad) return;
+    if (message.firstLoad) {
+      getAIBot();
+      return;
+    }
     dispatch(getConversations({ auth }));
+    dispatch({
+      type: GLOBALTYPES.ONLINE,
+      payload: wiseTkun._id,
+    });
   }, [dispatch, auth, message.firstLoad]);
 
   // Load more
@@ -72,6 +88,7 @@ function LeftSide() {
     if (message.resultUsers >= (page - 1) * 9 && page > 1) {
       dispatch(getConversations({ auth, page }));
     }
+    getAIBot();
   }, [message.resultUsers, page, auth, dispatch]);
 
   // Check User Online - Offline
@@ -100,13 +117,35 @@ function LeftSide() {
           </div>
         </div>
       </form>
-
       <div className="message_chat_list">
+        {!isBotChat && (
+          <div className="list_user_chat message_user rounded-3 m-2 pointer">
+            <Link
+              to={`/message/${aiId}`}
+              className="w-100"
+              onClick={() => {
+                handleAddUser({ ...wiseTkun });
+                dispatch({
+                  type: BOT_TYPES.SET_IS_BOT_CHAT,
+                  payload: { isBotChat: true, activeBot: { ...wiseTkun } },
+                });
+              }}
+            >
+              Chat with AI
+            </Link>
+          </div>
+        )}
         {searchUsers.length !== 0 ? (
           <>
             {searchUsers.map((user) => (
               <div key={user._id} className={`list_user_chat message_user rounded-3 m-2 pointer ${isActive(user)}`}>
-                <Link to={`/message/${user._id}`} className="w-100" onClick={() => handleAddUser(user)}>
+                <Link
+                  to={`/message/${user._id}`}
+                  className="w-100"
+                  onClick={() => {
+                    handleAddUser(user);
+                  }}
+                >
                   <UserCard user={user} />
                 </Link>
               </div>
@@ -116,7 +155,13 @@ function LeftSide() {
           <>
             {message.users.map((user) => (
               <div key={user._id} className={`list_user_chat message_user rounded-3 m-2 pointer ${isActive(user)}`}>
-                <Link to={`/message/${user._id}`} className="w-100" onClick={() => handleAddUser(user)}>
+                <Link
+                  to={`/message/${user._id}`}
+                  className="w-100"
+                  onClick={() => {
+                    handleAddUser(user);
+                  }}
+                >
                   <UserCard user={user} msg>
                     {user.online ? (
                       <i className="fas fa-circle text-success" />

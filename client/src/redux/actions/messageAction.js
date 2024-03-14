@@ -10,6 +10,7 @@ export const MESS_TYPES = {
   DELETE_MESSAGES: 'DELETE_MESSAGES',
   DELETE_CONVERSATION: 'DELETE_CONVERSATION',
   CHECK_ONLINE_OFFLINE: 'CHECK_ONLINE_OFFLINE',
+  GET_BOTS: 'GET_BOTS',
 };
 
 export const addMessage = (props) => async (dispatch) => {
@@ -17,6 +18,25 @@ export const addMessage = (props) => async (dispatch) => {
   dispatch({ type: MESS_TYPES.ADD_MESSAGE, payload: msg });
 
   const { _id, avatar, fullname, username } = auth.user;
+  socket.emit('addMessage', { ...msg, user: { _id, avatar, fullname, username } });
+
+  try {
+    await postDataApi('message', msg, auth.token);
+  } catch (err) {
+    dispatch({ type: GLOBALTYPES.ALERT, payload: { error: err.response.data.msg } });
+  }
+};
+export const addAIMessage = (props) => async (dispatch) => {
+  const { msg, auth, socket } = props;
+  dispatch({ type: MESS_TYPES.ADD_MESSAGE, payload: msg });
+
+  const aiBot = {
+    _id: '65f18a919b40fc18f05dc02a',
+    avatar: 'https://icons.iconarchive.com/icons/papirus-team/papirus-status/512/avatar-default-icon.png',
+    fullname: 'T-kun Thông Thái',
+    username: 'tkunopenai',
+  };
+  const { _id, avatar, fullname, username } = aiBot;
   socket.emit('addMessage', { ...msg, user: { _id, avatar, fullname, username } });
 
   try {
