@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 /* eslint-disable react/prop-types */
 import moment from 'moment';
 import PropTypes from 'prop-types';
@@ -11,14 +12,25 @@ function PostThumb({ posts, result }) {
       {posts.map((post) => (
         <div className="post_thumb_display border rounded-3 shadow mb-5 overflow-hidden bg-white" key={post._id}>
           <Link to={`/post/${post._id}`}>
-            {post.images[0].url.match(/video/i) ? (
-              <video controls src={post.images[0].url} alt={post.images[0].url} className="w-100">
+            {post.images[0]?.url?.match(/video/i) ? (
+              <video
+                controls
+                src={
+                  post?.images[0]?.url ||
+                  'https://static.vecteezy.com/system/resources/thumbnails/004/141/669/small/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg'
+                }
+                alt={post?.images[0]?.url || 'No Image'}
+                className="w-100"
+              >
                 <track kind="captions" />
               </video>
             ) : (
               <img
-                src={post.images[0].url}
-                alt={post.images[0].url}
+                src={
+                  post?.images[0]?.url ||
+                  'https://static.vecteezy.com/system/resources/thumbnails/004/141/669/small/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg'
+                }
+                alt={post?.images[0]?.url || 'No Image'}
                 style={{ height: 300 }}
                 className="w-100 img-cover img-fluid"
               />
