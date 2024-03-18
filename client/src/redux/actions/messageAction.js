@@ -10,7 +10,6 @@ export const MESS_TYPES = {
   DELETE_MESSAGES: 'DELETE_MESSAGES',
   DELETE_CONVERSATION: 'DELETE_CONVERSATION',
   CHECK_ONLINE_OFFLINE: 'CHECK_ONLINE_OFFLINE',
-  GET_BOTS: 'GET_BOTS',
 };
 
 export const addMessage = (props) => async (dispatch) => {
