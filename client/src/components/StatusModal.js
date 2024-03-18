@@ -1,11 +1,14 @@
 /* eslint-disable react/no-array-index-key */
+/* eslint-disable arrow-body-style */
 import axios from 'axios';
+import * as tf from '@tensorflow/tfjs';
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextareaAutosize from 'react-textarea-autosize';
 import { imageShow, videoShow } from 'utils/mediaShow';
 import { GLOBALTYPES } from '../redux/actions/globalTypes';
 import { createPost, updatePost } from '../redux/actions/postAction';
+import imageClasses from '../utils/labels';
 
 import Icons from './Icons';
 
@@ -92,7 +95,60 @@ function StatusModal() {
     tracks.stop();
     setStream(false);
   };
+  const readImageFile = (file) => {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
 
+      reader.onload = () => resolve(reader.result);
+
+      reader.readAsDataURL(file);
+    });
+  };
+  const createHTMLImageElement = (imageSrc) => {
+    return new Promise((resolve) => {
+      const img = new Image();
+
+      img.onload = () => resolve(img);
+
+      img.src = imageSrc;
+    });
+  };
+  const predict = async (params) => {
+    const model = await tf.loadLayersModel('http://127.0.0.1:5000/model/model.json');
+    const imageSrc = await readImageFile(images[0]);
+    const image = await createHTMLImageElement(imageSrc);
+    const { predictedClass, confidence } = tf.tidy(() => {
+      const tensorImg = tf.browser.fromPixels(image).resizeNearestNeighbor([180, 180]).toFloat().expandDims();
+      const result = model.predict(tensorImg);
+
+      const predictions = result.dataSync();
+      const predictedIndex = result.as1D().argMax().dataSync()[0];
+
+      const imageClass = imageClasses[predictedIndex];
+      const prob = Math.round(predictions[predictedIndex] * 100);
+
+      return { predictedClass: imageClass, confidence: prob };
+    });
+    // const prediction = model.predict(tensor).dataSync();
+    // const sortedPrediction = Array.from(prediction)
+    //   .map((prob, index) => {
+    //     const predictedClass = imageClasses[index];
+    //     const confidence = Math.round(prob * 100);
+    //     return {
+    //       predictedClass,
+    //       confidence,
+    //     };
+    //   })
+    //   .sort((a, b) => b - a);
+    console.log(predictedClass);
+
+    console.log(confidence);
+    if (status.onEdit) {
+      dispatch(updatePost({ content, images, auth, status }));
+    } else {
+      dispatch(createPost({ content, images, auth, socket }));
+    }
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     if (images.length === 0) {
@@ -103,12 +159,8 @@ function StatusModal() {
         },
       });
     }
-
-    if (status.onEdit) {
-      dispatch(updatePost({ content, images, auth, status }));
-    } else {
-      dispatch(createPost({ content, images, auth, socket }));
-    }
+    // AI hashtag
+    predict();
 
     setContent('');
     setImages([]);

@@ -156,6 +156,9 @@ button {
 /* =============== CALL MODAL =============== */
 @import './styles/call_modal.css';
 
+/* =============== CALL MODAL =============== */
+@import './styles/chatPdf.css';
+
 /* <========================= RESPONSIVE ==========================> */
 
 /* =============== SUPER SMALL =============== */

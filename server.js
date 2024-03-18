@@ -42,6 +42,7 @@ app.use("/api", require("./routes/notifyRouter"));
 app.use("/api", require("./routes/messageRouter"));
 app.use("/api", require("./routes/openAIRouter"));
 
+app.use(express.static("./static"));
 // Mongoose setting
 const URL = process.env.MONGODB_URL;
 mongoose.connect(

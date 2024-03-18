@@ -1,3 +1,6 @@
+/* eslint-disable arrow-body-style */
+/* eslint-disable react/no-array-index-key */
+
 import NotifyModal from 'components/NotifyModal';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,6 +26,17 @@ export default function Menu() {
     },
   ];
 
+  const utils = [
+    {
+      name: 'Chat Bot',
+      to: '/message',
+    },
+    {
+      name: 'PDF',
+      to: '/chatPdf',
+    },
+  ];
+
   const { auth, notify } = useSelector((state) => state);
   const dispatch = useDispatch();
   return (
@@ -39,6 +53,29 @@ export default function Menu() {
           </NavLink>
         </li>
       ))}
+      <li className="nav-item dropdown">
+        <button
+          className="nav-link text-dark text-center rounded-circle circle button-dropdown"
+          style={{ paddingTop: '1px' }}
+          id="navbarDropdown"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          type="button"
+        >
+          <i className="fas fa-sort-down fs-4" />
+        </button>
+        <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+          {utils.map((util) => {
+            return (
+              <li key={util.name} className="p-2">
+                <Link to={util.to}>
+                  <span className="text-dark">{util.name}</span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </li>
       <li className="nav-item mx-2 dropdown notify">
         <button
           type="button"
