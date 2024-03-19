@@ -53,6 +53,12 @@
 .message_chat_list .message_user .fa-circle.active {
   color: forestgreen;
 }
+.message_chat_list .message_user small div {
+  max-width: 250px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 
 /* -------- Chat Input----- */
 .chat_input {

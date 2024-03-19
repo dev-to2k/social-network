@@ -15,7 +15,7 @@ export const POST_TYPES = {
 };
 
 export const createPost = (props) => async (dispatch) => {
-  const { content, images, auth, socket } = props;
+  const { content, images, location, hashtags, auth, socket } = props;
   let media = [];
   try {
     dispatch({
@@ -29,7 +29,7 @@ export const createPost = (props) => async (dispatch) => {
       media = await imageUpload(images);
     }
 
-    const res = await postDataApi('posts', { content, images: media }, auth.token);
+    const res = await postDataApi('posts', { content, images: media, location, hashtags }, auth.token);
 
     dispatch({
       type: POST_TYPES.CREATE_POST,
@@ -93,7 +93,7 @@ export const getPosts = (token) => async (dispatch) => {
 };
 
 export const updatePost = (props) => async (dispatch) => {
-  const { content, images, auth, status } = props;
+  const { content, images, location, hashtags, auth, status } = props;
 
   let media = [];
   const imgNewUrl = images.filter((img) => !img.url);
@@ -105,7 +105,11 @@ export const updatePost = (props) => async (dispatch) => {
     dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } });
     if (imgNewUrl.length > 0) media = await imageUpload(imgNewUrl);
 
-    const res = await patchDataApi(`post/${status._id}`, { content, images: [...imgOldUrl, ...media] }, auth.token);
+    const res = await patchDataApi(
+      `post/${status._id}`,
+      { content, images: [...imgOldUrl, ...media], location, hashtags },
+      auth.token
+    );
 
     dispatch({ type: POST_TYPES.UPDATE_POST, payload: res.data.newPost });
 

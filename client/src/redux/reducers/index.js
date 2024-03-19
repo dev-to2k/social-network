@@ -13,6 +13,7 @@ import profile from './profileReducer';
 import socket from './socketReducer';
 import status from './statusReducer';
 import suggestions from './suggestionsReducer';
+import bot from './botReducer';
 
 export default combineReducers({
   auth,
@@ -29,4 +30,5 @@ export default combineReducers({
   online,
   call,
   peer,
+  bot,
 });

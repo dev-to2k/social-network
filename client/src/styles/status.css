@@ -120,3 +120,39 @@
   resize: none;
   outline: none;
 }
+.status_modal .location {
+  width: 80%;
+  margin-bottom: 20px;
+  padding-right: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+}
+.status_modal .body .location .location-text {
+  width: 90%;
+  padding: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.status_modal .location #x {
+}
+
+.status_modal .hashtags {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 5px;
+}
+
+.status_modal .hashtags .hashtag {
+  box-shadow: 8px 8px 8px #d2d1d1;
+  padding: 5px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 5px;
+}

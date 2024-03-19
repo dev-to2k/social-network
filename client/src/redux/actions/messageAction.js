@@ -25,6 +25,25 @@ export const addMessage = (props) => async (dispatch) => {
     dispatch({ type: GLOBALTYPES.ALERT, payload: { error: err.response.data.msg } });
   }
 };
+export const addAIMessage = (props) => async (dispatch) => {
+  const { msg, auth, socket } = props;
+  dispatch({ type: MESS_TYPES.ADD_MESSAGE, payload: msg });
+
+  const aiBot = {
+    _id: '65f18a919b40fc18f05dc02a',
+    avatar: 'https://icons.iconarchive.com/icons/papirus-team/papirus-status/512/avatar-default-icon.png',
+    fullname: 'T-kun Thông Thái',
+    username: 'tkunopenai',
+  };
+  const { _id, avatar, fullname, username } = aiBot;
+  socket.emit('addMessage', { ...msg, user: { _id, avatar, fullname, username } });
+
+  try {
+    await postDataApi('message', msg, auth.token);
+  } catch (err) {
+    dispatch({ type: GLOBALTYPES.ALERT, payload: { error: err.response.data.msg } });
+  }
+};
 
 export const getConversations = (props) => async (dispatch) => {
   const { auth, page = 1 } = props;

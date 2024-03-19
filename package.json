@@ -4,6 +4,8 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
+    "@dqbd/tiktoken": "^1.0.13",
+    "@tensorflow/tfjs": "^4.17.0",
     "bcrypt": "^5.0.1",
     "concurrently": "^6.2.1",
     "cookie-parser": "^1.4.5",
@@ -13,6 +15,9 @@
     "expressjs": "^1.0.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.8",
+    "multer": "^1.4.5-lts.1",
+    "openai": "^4.28.4",
+    "pdf-parse": "^1.1.1",
     "peer": "^0.6.1",
     "socket.io": "^4.1.3"
   },

@@ -13,16 +13,8 @@ module.exports = {
   },
   plugins: ['prettier', 'react'],
   rules: {
-    'prettier/prettier': [
-      'error',
-      {
-        trailingComma: 'es5',
-        singleQuote: true,
-        semi: true,
-        printWidth: 120,
-        endOfLine: 'lf',
-      },
-    ],
+    'linebreak-style': 0,
+    'prettier/prettier': 0,
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     semi: ['error', 'always'],
     'import/no-dynamic-require': 0,
@@ -54,5 +46,6 @@ module.exports = {
     'react/react-in-jsx-scope': 0,
     'comma-dangle': 0,
     'react/prop-types': 0,
+    'no-unused-vars': 0,
   },
 };
