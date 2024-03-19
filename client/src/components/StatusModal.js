@@ -134,7 +134,7 @@ function StatusModal() {
   };
 
   async function getLocationInfo(latitude, longitude) {
-    const APIkey = '4f580159ed6f417481b0c2dfb270c58f';
+    const APIkey = process.env.LOCATION_API_KEY;
     const url = `https://api.opencagedata.com/geocode/v1/json?q=${latitude},${longitude}&key=${APIkey}`;
     await axios(url)
       .then((response) => response.data)
