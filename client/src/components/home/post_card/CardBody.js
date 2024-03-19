@@ -1,3 +1,4 @@
+/* eslint-disable  arrow-body-style */
 import CarouselImage from 'components/CarouselImage';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
@@ -7,6 +8,11 @@ function CardBody({ post }) {
 
   return (
     <div className="card_body mb-3">
+      {post.location && (
+        <div className="location mb-3">
+          <div className="location-text">{`tại ${post.location}`}</div>
+        </div>
+      )}
       <div className="card_body-content mb-3">
         <span>
           {post.content.length < 60 ? post.content : readMore ? `${post.content} ` : `${post.content.slice(0, 60)}...`}
@@ -19,6 +25,17 @@ function CardBody({ post }) {
           </button>
         )}
       </div>
+      {post.hashtags && (
+        <div className="hashtags mb-3">
+          {post.hashtags.map((hashtag) => {
+            return (
+              <div key={hashtag} className="hashtag">
+                <div className="hashtag-text">{`#${hashtag}`}</div>
+              </div>
+            );
+          })}
+        </div>
+      )}
       {post.images.length > 0 && <CarouselImage images={post.images} id={post._id} />}
     </div>
   );

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { MESS_TYPES } from 'redux/actions/messageAction';
 import { follow, unFollow } from 'redux/actions/profileAction';
+import { getSuggestions } from 'redux/actions/suggestionsAction';
 
 export default function FollowButton({ user }) {
   const history = useHistory();
@@ -22,9 +23,10 @@ export default function FollowButton({ user }) {
 
   const handleFollow = async () => {
     if (load) return;
-    setFollowed(true);
     setLoad(true);
+    setFollowed(true);
     await dispatch(follow({ users: profile.users, user, auth, socket }));
+    dispatch(getSuggestions(auth.token));
     setLoad(false);
   };
 
@@ -33,6 +35,7 @@ export default function FollowButton({ user }) {
     setFollowed(false);
     setLoad(true);
     await dispatch(unFollow({ users: profile.users, user, auth, socket }));
+    dispatch(getSuggestions(auth.token));
     setLoad(false);
   };
 
